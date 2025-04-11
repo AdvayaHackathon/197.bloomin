@@ -11,58 +11,66 @@ import {
   X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 interface Role {
   icon: React.ReactElement;
   label: string;
   description: string;
-  loginHref: string;
+  role: string;
   skipHref?: string;
 }
 
 const SideNav = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const navigate = useNavigate();
 
   const roles: Role[] = [
     {
       icon: <GraduationCap size={20} />,
       label: "Medical Students",
       description: "Join thousands of medical students",
-      loginHref: "https://medstudent-dashboard-frontend.netlify.app/",
+      role: "student",
       skipHref: "https://medstudent-dashboard-frontend.netlify.app/"
     },
     {
       icon: <Users size={20} />,
       label: "Doctors",
       description: "Connect with fellow doctors, help students and grow your network",
-      loginHref: "/login/doctor",
+      role: "doctor",
       skipHref: "https://bloomin-doctor.netlify.app/"
     },
     {
       icon: <Heart size={20} />,
       label: "Patients",
       description: "Get AI-assisted health insights & consult verified doctors",
-      loginHref: "/login/patient",
+      role: "patient",
       skipHref: "https://bloomin-patients.netlify.app/"
     },
     {
       icon: <Building2 size={20} />,
       label: "Medical Institutions",
       description: "Manage your students, research, and professional network in one place",
-      loginHref: "/login/institution",
+      role: "institution",
       skipHref: "https://bloomin-institutions.netlify.app/"
     },
     {
       icon: <FlaskConical size={20} />,
       label: "Medical Researchers",
       description: "Collaborate on cutting-edge research with global experts",
-      loginHref: "/login/researcher",
+      role: "researcher",
       skipHref: "https://bloomin-researchers.netlify.app/"
     }
   ];
 
-  const handleLogin = (href: string) => {
-    window.location.href = href;
+  const handleLogin = (role: string) => {
+    navigate(`/auth/login?role=${role}`);
+    setMobileNavOpen(false);
+  };
+
+  const handleRegister = () => {
+    navigate('/auth/register');
+    setMobileNavOpen(false);
   };
 
   const handleSkip = (href: string) => {
@@ -116,7 +124,7 @@ const SideNav = () => {
                       <div className="mt-2 flex items-center gap-2">
                         <button
                           className="inline-flex items-center text-white bg-white/10 hover:bg-white/15 rounded-full px-3 py-1 text-xs"
-                          onClick={() => setMobileNavOpen(false)}
+                          onClick={() => handleLogin(role.role)}
                         >
                           <LogIn className="mr-1.5 h-3 w-3" />
                           Login
@@ -144,7 +152,7 @@ const SideNav = () => {
         <div className="p-4 border-t border-white/10">
           <Button 
             className="w-full bg-[#0088cc] hover:bg-[#0088cc]/90 text-white font-medium py-2 rounded-full text-sm"
-            onClick={() => setMobileNavOpen(false)}
+            onClick={handleRegister}
           >
             <UserPlus className="mr-1.5 h-3.5 w-3.5" />
             Register Now

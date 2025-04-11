@@ -10,6 +10,9 @@ import Happenings from "./pages/Happenings";
 import BuiltBy from "./pages/BuiltBy";
 import NotFound from "./pages/NotFound";
 import FloatingCollabButton from "./components/FloatingCollabButton";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -18,18 +21,22 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <FloatingCollabButton />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/collaborate" element={<Collaborate />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/happenings" element={<Happenings />} />
-          <Route path="/built-by" element={<BuiltBy />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <FloatingCollabButton />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/collaborate" element={<Collaborate />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/happenings" element={<Happenings />} />
+            <Route path="/built-by" element={<BuiltBy />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/register" element={<Register />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

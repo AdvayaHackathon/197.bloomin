@@ -12,7 +12,9 @@ import {
   ChevronLeft,
   Calendar,
   Info,
-  Handshake
+  Handshake,
+  LogIn,
+  UserPlus
 } from "lucide-react";
 import { Button } from '@/components/ui/button';
 
@@ -90,6 +92,22 @@ const Navbar = () => {
               <Users className="h-5 w-5" />
               Collaborate with Us
             </button>
+
+            <button
+              onClick={() => handleNavigation('/auth/login')}
+              className="text-white/90 hover:text-white flex items-center gap-2 transition-colors duration-300"
+            >
+              <LogIn className="h-5 w-5" />
+              <span className="text-base">Login</span>
+            </button>
+
+            <button
+              onClick={() => handleNavigation('/auth/register')}
+              className="bg-white text-bloomin-blue hover:bg-white/90 transition-colors duration-300 px-5 py-2.5 rounded-full flex items-center gap-2 font-medium"
+            >
+              <UserPlus className="h-5 w-5" />
+              Register
+            </button>
             
             <a 
               href="mailto:raghav@pesce.ac.in" 
@@ -102,6 +120,20 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
+            <button
+              onClick={() => handleNavigation('/auth/login')}
+              className="text-white/90 hover:text-white p-2"
+            >
+              <LogIn className="h-5 w-5" />
+            </button>
+
+            <button
+              onClick={() => handleNavigation('/auth/register')}
+              className="text-white/90 hover:text-white p-2"
+            >
+              <UserPlus className="h-5 w-5" />
+            </button>
+            
             <button 
               onClick={() => handleNavigation('/collaborate')}
               className="bg-bloomin-teal text-white hover:bg-bloomin-teal/90 transition-colors duration-300 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full flex items-center gap-1 mr-1 sm:mr-2 text-xs sm:text-sm font-medium"
@@ -149,6 +181,20 @@ const Navbar = () => {
                   {item.name}
                 </button>
               ))}
+              <button
+                onClick={() => handleNavigation('/auth/login')}
+                className="text-white/90 hover:text-white flex items-center gap-2 transition-colors duration-300 px-2 py-1.5 w-full text-left text-sm sm:text-base"
+              >
+                <LogIn className="h-5 w-5" />
+                Login
+              </button>
+              <button
+                onClick={() => handleNavigation('/auth/register')}
+                className="text-white/90 hover:text-white flex items-center gap-2 transition-colors duration-300 px-2 py-1.5 w-full text-left text-sm sm:text-base"
+              >
+                <UserPlus className="h-5 w-5" />
+                Register
+              </button>
             </div>
           </div>
         </div>
