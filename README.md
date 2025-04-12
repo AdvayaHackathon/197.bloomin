@@ -41,19 +41,17 @@ Bloomin integrates AI, community, and personalized learning into a single platfo
 <h2 style="font-size: 2rem; color: #9B59B6;">🖼️ Web App Screenshots</h2>
 
 <p style="font-size: 1.1rem; color: #666;">Here’s a glimpse into the Bloomin experience </p>
-<p>                                                                                      
-
-</p>
+<h2>Main page</h2>
 <img src="Screenshot 2025-04-12 113846.png" alt="Dashboard" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-
+<h2>For Medical Students:</h2>
 <img src="Screenshot 2025-04-12 113924.png" alt="AI Assistant" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-
+<h2>For Doctors:</h2>
 <img src="Screenshot 2025-04-12 113942.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-
+<h2>For Researchers:</h2>
 <img src="Screenshot 2025-04-12 114007.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-
+<h2>For Patients:</h2>
 <img src="Screenshot 2025-04-12 114033.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-
+ <h2></h2>For Institutions:</h2>
 <img src="Screenshot 2025-04-12 114149.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
 <hr style="margin: 40px 0;" />
