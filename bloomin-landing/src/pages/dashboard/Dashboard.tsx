@@ -1,58 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
+import { useAuth } from '@/contexts/AuthContext';
 
 const Dashboard = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
+  const { role } = useParams();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/auth/me', {
-          credentials: 'include'
-        });
+    // If no user is logged in, redirect to login
+    if (!user) {
+      navigate('/auth/login');
+      return;
+    }
 
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user);
-        } else {
-          navigate('/auth/login');
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        navigate('/auth/login');
-      }
-    };
-
-    fetchUserData();
-  }, [navigate]);
+    // If the user's role doesn't match the URL role parameter, redirect to the correct dashboard
+    if (profile && profile.role !== role) {
+      navigate(`/dashboard/${profile.role}`);
+    }
+  }, [user, profile, role, navigate]);
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
-
-      if (response.ok) {
-        navigate('/');
-      }
+      await signOut();
+      navigate('/');
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
 
-  if (!user) {
-    return <div>Loading...</div>;
+  if (!user || !profile) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (
@@ -60,9 +40,9 @@ const Dashboard = () => {
       <div className="max-w-4xl mx-auto">
         <Card>
           <CardHeader>
-            <CardTitle>Welcome, {user.name}!</CardTitle>
+            <CardTitle>Welcome, {profile.name}!</CardTitle>
             <CardDescription>
-              You are logged in as a {user.role}
+              You are logged in as a {profile.role}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -70,7 +50,7 @@ const Dashboard = () => {
               <div>
                 <h3 className="font-medium">Your Profile</h3>
                 <p className="text-sm text-gray-600">Email: {user.email}</p>
-                <p className="text-sm text-gray-600">Role: {user.role}</p>
+                <p className="text-sm text-gray-600">Role: {profile.role}</p>
               </div>
 
               <Button

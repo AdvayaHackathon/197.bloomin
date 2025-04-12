@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Login = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { signIn, error: authError } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const role = searchParams.get('role') || 'patient';
 
@@ -27,33 +28,15 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          role
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
-
+      await signIn(formData.email, formData.password);
       // Redirect based on role
       navigate(`/dashboard/${role}`);
     } catch (err: any) {
-      setError(err.message || 'An error occurred during login');
+      console.error('Login error:', err);
+      // Error is handled by AuthContext
     } finally {
       setLoading(false);
     }
@@ -77,10 +60,10 @@ const Login = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
+            {authError && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
+                <AlertDescription>{authError}</AlertDescription>
               </Alert>
             )}
             

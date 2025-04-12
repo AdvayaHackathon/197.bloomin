@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,10 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabaseClient';
 
 const Register = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { signUp, error: authError } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,8 +20,34 @@ const Register = () => {
     confirmPassword: '',
     role: searchParams.get('role') || 'patient'
   });
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [debugInfo, setDebugInfo] = useState<string>('');
+
+  // Debug Supabase connection
+  useEffect(() => {
+    const checkSupabaseConnection = async () => {
+      try {
+        console.log('Checking Supabase connection...');
+        console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
+        console.log('Supabase Key exists:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
+        
+        const { data, error } = await supabase.from('profiles').select('count').limit(1);
+        
+        if (error) {
+          console.error('Supabase connection error:', error);
+          setDebugInfo(`Connection error: ${error.message}`);
+        } else {
+          console.log('Supabase connection successful:', data);
+          setDebugInfo('Connection successful');
+        }
+      } catch (err) {
+        console.error('Error checking Supabase connection:', err);
+        setDebugInfo(`Error: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    };
+    
+    checkSupabaseConnection();
+  }, []);
 
   const roles = [
     { value: 'student', label: 'Medical Student' },
@@ -30,40 +59,31 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setDebugInfo('Passwords do not match');
       return;
     }
 
     setLoading(true);
+    setDebugInfo('Attempting to register...');
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          role: formData.role
-        })
+      console.log('Registering with:', { 
+        email: formData.email, 
+        name: formData.name, 
+        role: formData.role 
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
-      }
-
+      
+      await signUp(formData.email, formData.password, formData.name, formData.role);
+      setDebugInfo('Registration successful, redirecting...');
+      
       // Redirect to dashboard based on role
       navigate(`/dashboard/${formData.role}`);
     } catch (err: any) {
-      setError(err.message || 'An error occurred during registration');
+      console.error('Registration error:', err);
+      setDebugInfo(`Registration error: ${err.message || 'Unknown error'}`);
+      // Error is handled by AuthContext
     } finally {
       setLoading(false);
     }
@@ -94,10 +114,10 @@ const Register = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
+            {authError && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
+                <AlertDescription>{authError}</AlertDescription>
               </Alert>
             )}
 
@@ -181,6 +201,14 @@ const Register = () => {
                 Login
               </Button>
             </div>
+            
+            {/* Debug Information */}
+            {debugInfo && (
+              <div className="mt-4 p-3 bg-gray-100 rounded text-xs font-mono overflow-auto max-h-40">
+                <p className="font-bold">Debug Info:</p>
+                <p>{debugInfo}</p>
+              </div>
+            )}
           </form>
         </CardContent>
       </Card>

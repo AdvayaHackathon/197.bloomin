@@ -13,6 +13,8 @@ import FloatingCollabButton from "./components/FloatingCollabButton";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import { AuthProvider } from "./contexts/AuthContext";
+import Dashboard from "./pages/dashboard/Dashboard";
+import TestConnection from './pages/TestConnection';
 
 const queryClient = new QueryClient();
 
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/built-by" element={<BuiltBy />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
+            <Route path="/dashboard/:role" element={<Dashboard />} />
+            <Route path="/test-connection" element={<TestConnection />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
