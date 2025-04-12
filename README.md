@@ -51,7 +51,7 @@ Bloomin integrates AI, community, and personalized learning into a single platfo
 <img src="Screenshot 2025-04-12 114007.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 <h2>For Patients:</h2>
 <img src="Screenshot 2025-04-12 114033.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
- <h2></h2>For Institutions:</h2>
+ <h2>For Institutions:</h2>
 <img src="Screenshot 2025-04-12 114149.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
 <hr style="margin: 40px 0;" />
