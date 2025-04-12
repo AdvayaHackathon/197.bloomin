@@ -17,6 +17,7 @@ Despite the rise of digital tools in healthcare, most platforms are fragmented, 
   <li><strong>👨‍⚕️ Doctors:</strong> Need fast access to clinical tools, collaborative research, and AI-driven second opinions.</li>
   <li><strong>🔬 Researchers:</strong> Face difficulty accessing clean medical datasets, secure collaboration platforms, and sharing reproducible AI models.</li>
   <li><strong>🏥 Institutions:</strong> Struggle with engaging students digitally, managing academic resources, and showcasing institutional excellence.</li>
+  <li><strong>🧑‍🤝‍🧑 Patients:</strong> Lack trusted access to accurate medical advice, teleconsultations, treatment tracking, and multilingual support.</li>
 </ul>
 
 <hr style="margin: 40px 0;" />
@@ -32,14 +33,17 @@ Bloomin integrates AI, community, and personalized learning into a single platfo
   <li><strong>🧠 For Doctors:</strong> AI diagnosis assistant, drug interaction checker, telemedicine toolkit, and peer discussion panels.</li>
   <li><strong>🧬 For Researchers:</strong> Access to labeled datasets, ML tools for model training, and a collaborative publishing board.</li>
   <li><strong>🏛️ For Institutions:</strong> Digital repository management, student analytics dashboard, and branded institutional showcase pages.</li>
+  <li><strong>👨‍👩‍👧‍👦 For Patients:</strong> Secure appointment booking, AI-powered symptom checker, voice-based chatbot support in multiple Indian languages, and real-time treatment logs.</li>
 </ul>
 
 <hr style="margin: 40px 0;" />
 
 <h2 style="font-size: 2rem; color: #9B59B6;">🖼️ Web App Screenshots</h2>
 
-<p style="font-size: 1.1rem; color: #666;">Here’s a glimpse into the Bloomin experience (add your actual screenshots below):</p>
+<p style="font-size: 1.1rem; color: #666;">Here’s a glimpse into the Bloomin experience </p>
+<p>                                                                                      
 
+</p>
 <img src="Screenshot 2025-04-12 113846.png" alt="Dashboard" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
 <img src="Screenshot 2025-04-12 113924.png" alt="AI Assistant" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
