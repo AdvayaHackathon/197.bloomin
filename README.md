@@ -40,11 +40,11 @@ Bloomin integrates AI, community, and personalized learning into a single platfo
 
 <p style="font-size: 1.1rem; color: #666;">Here’s a glimpse into the Bloomin experience (add your actual screenshots below):</p>
 
-<img src="screenshots/dashboard.png" alt="Dashboard" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+<img src="Screenshot 2025-04-12 113846.png" alt="Dashboard" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
-<img src="screenshots/ai-assistant.png" alt="AI Assistant" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+<img src="Screenshot 2025-04-12 113924.png" alt="AI Assistant" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
-<img src="screenshots/community.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+<img src="Screenshot 2025-04-12 113942.png" alt="Community" style="width:100%; margin-top:20px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
 <hr style="margin: 40px 0;" />
 
